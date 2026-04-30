@@ -1,9 +1,7 @@
-import Navbar from "@/components/Navbar";
-
-const Home = () => {
-  return (  
-  <Navbar />
+export default function Home() {
+  return (
+    <main>
+      <h1>Qurbani Hat</h1>
+    </main>
   );
 }
-
-export default Home;
