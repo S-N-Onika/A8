@@ -82,7 +82,7 @@ const Navbar = () => {
                         <Link href="/login" onClick={() => setIsOpen(false)} className="text-center font-bold text-gray-600 py-2">
                             Login
                         </Link>
-                        <Link href="/register" onClick={() => setIsOpen(false)} className="text-center bg-green-900 text-white py-3 rounded-lg font-bold">
+                        <Link href="/register" onClick={() => setIsOpen(false)} className="text-center bg-green-900 text-white py-3 rounded-full font-bold">
                             Register
                         </Link>
                     </div>

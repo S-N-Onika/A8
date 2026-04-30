@@ -1,7 +1,13 @@
-export default function Home() {
+import Navbar from "@/components/Navbar";
+import Banner from "@/components/Banner";
+
+const Home = () => {
   return (
-    <main>
-      <h1>Qurbani Hat</h1>
-    </main>
+    <>
+    <Navbar />
+    <Banner />
+    </>
   );
 }
+
+export default Home;
