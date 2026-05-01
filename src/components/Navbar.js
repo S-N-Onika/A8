@@ -4,11 +4,13 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { FiMenu, FiX, FiSearch } from "react-icons/fi";
+import { FiMenu, FiX, FiSearch, FiLogOut, FiUser } from "react-icons/fi";
+import { FaUserCircle } from "react-icons/fa";
 
 const Navbar = () => {
     const pathname = usePathname();
     const [isOpen, setIsOpen] = useState(false);
+    const [showDropdown, setShowDropdown] = useState(false);
 
     const user = null;
 
@@ -19,24 +21,18 @@ const Navbar = () => {
 
     const activeLink = (path) =>
         pathname === path
-            ? "text-green-900 font-bold border-b-2 border-green-900"
-            : "text-gray-500 hover:text-green-900 transition-colors";
+            ? "text-green-900 font-bold border-b-2 border-green-900 pb-1"
+            : "text-gray-500 hover:text-green-900 transition-colors pb-1";
 
     return (
-        <nav className="bg-white border-b border-gray-100 sticky top-0 z-50">
+        <nav className="bg-white border-b border-gray-100 sticky top-0 z-50 shadow-sm">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between h-16 items-center">
 
                     <div className="flex-shrink-0">
-                        <Link href="/" className="flex items-center">
-                            <Image
-                                src="/logo.png"
-                                alt="Logo"
-                                width={40}
-                                height={40}
-                                className="object-contain"
-                            />
-                            <span className="text-3xl font-bold text-green-900">QurbaniHat</span>
+                        <Link href="/" className="flex items-center gap-1">
+                            <Image src="/logo.png" alt="Logo" width={50} height={50} className="object-contain" />
+                            <span className="text-3xl font-bold text-green-900 tracking-tight">QurbaniHat</span>
                         </Link>
                     </div>
 
@@ -57,13 +53,49 @@ const Navbar = () => {
 
                         <div className="h-6 w-[1px] bg-gray-200 mx-2 hidden sm:block"></div>
 
-                        <div className="hidden md:flex items-center gap-3">
-                            <Link href="/login" className="text-sm font-semibold text-gray-600 px-4 py-2 hover:bg-gray-50 rounded-lg transition-all">
-                                Login
-                            </Link>
-                            <Link href="/register" className="bg-green-900 text-white px-6 py-2.5 rounded-lg text-sm font-bold shadow-md hover:bg-green-800 transition-all">
-                                Register
-                            </Link>
+                        <div className="hidden md:flex items-center relative">
+                            {user ? (
+                                <div className="relative">
+                                    <button
+                                        onClick={() => setShowDropdown(!showDropdown)}
+                                        className="focus:outline-none flex items-center transition-transform active:scale-95"
+                                    >
+                                        {user.photoURL ? (
+                                            <div className="w-10 h-10 rounded-full border-2 border-green-900 overflow-hidden">
+                                                <img src={user.photoURL} alt="User" className="w-full h-full object-cover" />
+                                            </div>
+                                        ) : (
+                                            <FaUserCircle size={38} className="text-green-900 hover:text-green-700" />
+                                        )}
+                                    </button>
+
+                                    {showDropdown && (
+                                        <div className="absolute right-0 mt-3 w-44 bg-white rounded-xl shadow-2xl border border-gray-100 py-2 animate-in fade-in zoom-in duration-200 origin-top-right">
+                                            <Link
+                                                href="/my-profile"
+                                                onClick={() => setShowDropdown(false)}
+                                                className="flex items-center gap-3 px-4 py-2 text-sm text-gray-600 hover:bg-green-50 transition-colors"
+                                            >
+                                                <FiUser /> Profile
+                                            </Link>
+                                            <button
+                                                className="w-full flex items-center gap-3 px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors font-bold"
+                                            >
+                                                <FiLogOut /> Logout
+                                            </button>
+                                        </div>
+                                    )}
+                                </div>
+                            ) : (
+                                <div className="flex items-center gap-3">
+                                    <Link href="/login" className="text-sm font-semibold text-gray-600 px-4 py-2 hover:bg-gray-50 rounded-lg">
+                                        Login
+                                    </Link>
+                                    <Link href="/register" className="bg-green-900 text-white px-6 py-2.5 rounded-lg text-sm font-bold shadow-md hover:bg-green-800">
+                                        Register
+                                    </Link>
+                                </div>
+                            )}
                         </div>
 
                         <button onClick={() => setIsOpen(!isOpen)} className="md:hidden text-green-900">
@@ -76,22 +108,26 @@ const Navbar = () => {
             {isOpen && (
                 <div className="md:hidden bg-white border-t border-gray-100 p-6 space-y-4 shadow-xl">
                     {navLinks.map((link) => (
-                        <Link
-                            key={link.href}
-                            href={link.href}
-                            onClick={() => setIsOpen(false)}
-                            className={`block text-lg ${activeLink(link.href)}`}
-                        >
+                        <Link key={link.href} href={link.href} onClick={() => setIsOpen(false)} className={`block text-lg ${activeLink(link.href)}`}>
                             {link.name}
                         </Link>
                     ))}
                     <div className="pt-4 border-t border-gray-100 flex flex-col gap-3">
-                        <Link href="/login" onClick={() => setIsOpen(false)} className="text-center font-bold text-gray-600 py-2">
-                            Login
-                        </Link>
-                        <Link href="/register" onClick={() => setIsOpen(false)} className="text-center bg-green-900 text-white py-3 rounded-full font-bold">
-                            Register
-                        </Link>
+                        {user ? (
+                            <>
+                                <Link href="/my-profile" onClick={() => setIsOpen(false)} className="flex items-center justify-center gap-2 font-bold text-gray-700 py-2">
+                                    <FaUserCircle size={24} /> My Profile
+                                </Link>
+                                <button className="flex items-center justify-center gap-2 bg-red-50 text-red-600 py-3 rounded-xl font-bold">
+                                    <FiLogOut /> Logout Account
+                                </button>
+                            </>
+                        ) : (
+                            <>
+                                <Link href="/login" onClick={() => setIsOpen(false)} className="text-center font-bold text-gray-700 py-2">Login</Link>
+                                <Link href="/register" onClick={() => setIsOpen(false)} className="text-center bg-green-900 text-white py-3 rounded-full font-bold">Register</Link>
+                            </>
+                        )}
                     </div>
                 </div>
             )}

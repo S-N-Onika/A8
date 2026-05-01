@@ -12,7 +12,7 @@ const AnimalDetails = () => {
     const [animal, setAnimal] = useState(null);
     const [loading, setLoading] = useState(true);
     const [showToast, setShowToast] = useState(false);
-    const [isImageOpen, setIsImageOpen] = useState(false); // State for the image modal
+    const [isImageOpen, setIsImageOpen] = useState(false);
 
     useEffect(() => {
         fetch("/animals.json")
@@ -45,7 +45,6 @@ const AnimalDetails = () => {
         <main className="bg-[#FCF9F3] min-h-screen relative">
             <Navbar />
 
-            {/* --- IMAGE LIGHTBOX MODAL --- */}
             {isImageOpen && (
                 <div
                     className="fixed inset-0 z-[100] bg-black/90 flex items-center justify-center p-4 cursor-zoom-out"
@@ -65,7 +64,6 @@ const AnimalDetails = () => {
                 </div>
             )}
 
-            {/* Success Toast */}
             {showToast && (
                 <div className="fixed top-24 right-5 z-50 animate-in fade-in slide-in-from-right duration-300">
                     <div className="bg-green-900 text-white px-8 py-4 rounded-2xl shadow-2xl font-bold flex items-center gap-3 border-4 border-orange-500">
@@ -82,7 +80,6 @@ const AnimalDetails = () => {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
 
                     <div className="space-y-8">
-                        {/* --- CLICKABLE IMAGE --- */}
                         <div
                             className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border-8 border-white cursor-zoom-in group"
                             onClick={() => setIsImageOpen(true)}
