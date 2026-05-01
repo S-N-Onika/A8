@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import Navbar from "@/components/Navbar";
 import Banner from "@/components/Banner";
-
+import FeaturedAnimals from "@/components/FeaturedAnimals";
 
 export default function Home() {
   const [animals, setAnimals] = useState(null);
@@ -18,7 +18,7 @@ export default function Home() {
     <main>
       <Navbar />
       <Banner />
-      
+      <FeaturedAnimals animals={animals} />
     </main>
   );
 }

@@ -77,7 +77,7 @@ const Banner = () => {
                     <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start pt-2">
                         <Link
                             href="/animals"
-                            className="group flex items-center justify-center gap-2 bg-green-900 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:bg-green-800 hover:-translate-y-1 transition-all"
+                            className="group flex items-center justify-center gap-2 bg-green-900 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:bg-orange-900 hover:-translate-y-1 transition-all"
                         >
                             Browse All Animals
                             <LuArrowRight className="group-hover:translate-x-1 transition-transform" />

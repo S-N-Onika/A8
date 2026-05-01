@@ -9,7 +9,7 @@
         "age": 3,
         "location": "Bogura",
         "description": "Healthy deshi cow suitable for Qurbani. Well fed with natural food.",
-        "image": "https://ibb.co",
+        "image": "/cow5.jpeg",
         "category": "Large Animal"
     },
     {
@@ -22,7 +22,7 @@
         "age": 4,
         "location": "Chittagong",
         "description": "Premium Red Chittagong Bull. Known for meat quality and temperament.",
-        "image": "https://ibb.co",
+        "image": "/ox3.jpeg",
         "category": "Premium Animal"
     },
     {
@@ -35,7 +35,7 @@
         "age": 2,
         "location": "Kushtia",
         "description": "Pure Black Bengal goat. Very energetic and healthy.",
-        "image": "https://ibb.co",
+        "image": "/goat2.jpeg",
         "category": "Small Animal"
     },
     {
@@ -48,7 +48,7 @@
         "age": 3,
         "location": "Sirajganj",
         "description": "Massive size and height. Perfect for a large family Qurbani.",
-        "image": "https://ibb.co",
+        "image": "/cow3.jpeg",
         "category": "Large Animal"
     },
     {
@@ -61,7 +61,7 @@
         "age": 2,
         "location": "Rajshahi",
         "description": "Long-eared beautiful Jamunapari goat. Well-maintained and vaccinated.",
-        "image": "https://ibb.co",
+        "image": "/goat1.jpeg",
         "category": "Small Animal"
     },
     {
