@@ -47,17 +47,17 @@ const FeaturedAnimals = ({ animals }) => {
                             </div>
 
                             <div className="p-6 space-y-2 flex-grow">
-                                <h3 className="text-xl font-bold text-gray-900 leading-tight truncate">
+                                <h3 className="text-xl font-bold text-gray-900">
                                     {animal.name}
                                 </h3>
 
-                                <div className="flex items-center gap-2 text-sm text-gray-500 font-semibold uppercase tracking-wide">
+                                <div className="flex items-center gap-2 text-sm text-gray-500 font-semibold uppercase">
                                     <span>{animal.weight} KG</span>
                                     <span className="text-gray-300">|</span>
                                     <span>{animal.age} Years Old</span>
                                 </div>
 
-                                <div className="text-2xl font-black text-green-900">
+                                <div className="text-xl font-black text-green-900">
                                     BDT {animal.price.toLocaleString()}
                                 </div>
 

@@ -105,7 +105,7 @@
     },
     {
         "id": 9,
-        "name": "Brahman Cross",
+        "name": "Brahman Cross Cow",
         "type": "Cow",
         "breed": "Brahman",
         "price": 450000,
@@ -153,45 +153,6 @@
         "location": "Comilla",
         "description": "Cute spotted Barbari goat. Compact and perfect for small families.",
         "image": "/12.jfif",
-        "category": "Small Animal"
-    },
-    {
-        "id": 13,
-        "name": "Haryana Bull",
-        "type": "Cow",
-        "breed": "Haryana",
-        "price": 195000,
-        "weight": 400,
-        "age": 3,
-        "location": "Dinajpur",
-        "description": "Strong Haryana breed. Fast-growing and pure white coat.",
-        "image": "/13.jpeg",
-        "category": "Large Animal"
-    },
-    {
-        "id": 14,
-        "name": "Mundan Cow",
-        "type": "Cow",
-        "breed": "Local Mundan",
-        "price": 110000,
-        "weight": 250,
-        "age": 2,
-        "location": "Barisal",
-        "description": "Shorter breed, but very healthy and naturally fattened.",
-        "image": "/14.jfif",
-        "category": "Small Animal"
-    },
-    {
-        "id": 15,
-        "name": "Sirohi Goat",
-        "type": "Goat",
-        "breed": "Sirohi",
-        "price": 32000,
-        "weight": 42,
-        "age": 2,
-        "location": "Noakhali",
-        "description": "Brown spotted Sirohi goat. Very hardy and disease-resistant.",
-        "image": "/15.jpg",
         "category": "Small Animal"
     }
 ]
