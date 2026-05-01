@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import Banner from "@/components/Banner";
 import FeaturedAnimals from "@/components/FeaturedAnimals";
 import TipsBreeds from "@/components/Tips-Breeds";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   const [animals, setAnimals] = useState(null);
@@ -19,8 +20,17 @@ export default function Home() {
     <main>
       <Navbar />
       <Banner />
-      <FeaturedAnimals animals={animals} />
-      <TipsBreeds />
+      
+      <div id="featured">
+        <FeaturedAnimals animals={animals} />
+      </div>
+
+      <div id="Tips-Breeds" className="scroll-mt-20">
+        <TipsBreeds />
+      </div>
+
+
+      <Footer />
     </main>
   );
 }
