@@ -5,6 +5,7 @@ import Banner from "@/components/Banner";
 import FeaturedAnimals from "@/components/FeaturedAnimals";
 import TipsBreeds from "@/components/Tips-Breeds";
 import Footer from "@/components/Footer";
+import RatingSection from "@/components/Rating";
 
 export default function Home() {
   const [animals, setAnimals] = useState(null);
@@ -29,7 +30,7 @@ export default function Home() {
         <TipsBreeds />
       </div>
 
-
+      <RatingSection />
       <Footer />
     </main>
   );

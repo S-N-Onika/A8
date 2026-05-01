@@ -9,7 +9,7 @@
         "age": 3,
         "location": "Bogura",
         "description": "Healthy deshi cow suitable for Qurbani. Well fed with natural food.",
-        "image": "/cow5.jpeg",
+        "image": "/1.jpeg",
         "category": "Large Animal"
     },
     {
@@ -22,7 +22,7 @@
         "age": 4,
         "location": "Chittagong",
         "description": "Premium Red Chittagong Bull. Known for meat quality and temperament.",
-        "image": "/ox3.jpeg",
+        "image": "/2.jpeg",
         "category": "Premium Animal"
     },
     {
@@ -35,7 +35,7 @@
         "age": 2,
         "location": "Kushtia",
         "description": "Pure Black Bengal goat. Very energetic and healthy.",
-        "image": "/goat2.jpeg",
+        "image": "/3.jpeg",
         "category": "Small Animal"
     },
     {
@@ -48,7 +48,7 @@
         "age": 3,
         "location": "Sirajganj",
         "description": "Massive size and height. Perfect for a large family Qurbani.",
-        "image": "/cow3.jpeg",
+        "image": "/4.jpeg",
         "category": "Large Animal"
     },
     {
@@ -61,7 +61,7 @@
         "age": 2,
         "location": "Rajshahi",
         "description": "Long-eared beautiful Jamunapari goat. Well-maintained and vaccinated.",
-        "image": "/goat1.jpeg",
+        "image": "/5.jpeg",
         "category": "Small Animal"
     },
     {
@@ -74,7 +74,7 @@
         "age": 4,
         "location": "Pabna",
         "description": "Strong and majestic Sindhi bull. Naturally grown without steroids.",
-        "image": "https://ibb.co",
+        "image": "/6.jpeg",
         "category": "Premium Animal"
     },
     {
@@ -100,7 +100,7 @@
         "age": 2,
         "location": "Jessore",
         "description": "Unique Totapuri face profile. Beautiful white coat and healthy build.",
-        "image": "https://ibb.co",
+        "image": "/8.jpeg",
         "category": "Small Animal"
     },
     {
@@ -113,7 +113,7 @@
         "age": 4,
         "location": "Manikganj",
         "description": "The ultimate Qurbani animal. Giant size, hump-backed Brahman cross.",
-        "image": "https://ibb.co",
+        "image": "/9.jpeg",
         "category": "Premium Animal"
     },
     {
@@ -152,7 +152,7 @@
         "age": 1,
         "location": "Comilla",
         "description": "Cute spotted Barbari goat. Compact and perfect for small families.",
-        "image": "https://ibb.co",
+        "image": "/12.jfif",
         "category": "Small Animal"
     },
     {
@@ -165,7 +165,7 @@
         "age": 3,
         "location": "Dinajpur",
         "description": "Strong Haryana breed. Fast-growing and pure white coat.",
-        "image": "https://ibb.co",
+        "image": "/13.jpeg",
         "category": "Large Animal"
     },
     {
@@ -178,7 +178,7 @@
         "age": 2,
         "location": "Barisal",
         "description": "Shorter breed, but very healthy and naturally fattened.",
-        "image": "https://ibb.co",
+        "image": "/14.jfif",
         "category": "Small Animal"
     },
     {
@@ -191,7 +191,7 @@
         "age": 2,
         "location": "Noakhali",
         "description": "Brown spotted Sirohi goat. Very hardy and disease-resistant.",
-        "image": "https://ibb.co",
+        "image": "/15.jpg",
         "category": "Small Animal"
     }
 ]

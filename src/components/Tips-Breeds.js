@@ -2,13 +2,14 @@
 
 import Link from "next/link";
 import { LuCircleCheck } from "react-icons/lu";
+import Image from "next/image";
 
 const TipsBreeds = () => {
     const breeds = [
-        { name: "Deshi", img: "/cow2.jpeg" },
-        { name: "Sahiwal", img: "/sahiwal.jpeg" },
-        { name: "Gir", img: "/girBull.jpeg" },
-        { name: "Beetal", img: "/Beetal.jpg" },
+        { name: "Deshi", image: "/1.jpeg" },
+        { name: "Sahiwal", image: "/sahiwal.jpeg" },
+        { name: "Gir", image: "/girBull.jpeg" },
+        { name: "Beetal", image: "/Beetal.jpg" },
     ];
 
     return (
@@ -33,10 +34,12 @@ const TipsBreeds = () => {
                     </div>
                     <div className="flex justify-center items-center w-full">
                         <div className="w-44 h-44 md:w-52 md:h-52 rounded-full overflow-hidden border-2 border-orange-500 shadow-2xl flex-shrink-0">
-                            <img
+                            <Image
                                 src="/tips.webp"
                                 alt="Qurbani Guide"
-                                className="w-full h-full object-cover object-center"
+                                width={200}
+                                height={100}
+                                className="object-cover w-full h-full"
                             />
                         </div>
                     </div>
@@ -49,9 +52,11 @@ const TipsBreeds = () => {
                         {breeds.map((breed, index) => (
                             <div key={index} className="flex flex-col items-center justify-center space-y-3">
                                 <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden border-2 border-orange-500 p-0.5 shadow-lg flex items-center justify-center">
-                                    <img
-                                        src={breed.img}
+                                    <Image
+                                        src={breed.image}
                                         alt={breed.name}
+                                        width={200}
+                                        height={200}
                                         className="w-full h-full rounded-full object-cover object-right"
                                     />
                                 </div>

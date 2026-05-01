@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 import { HiOutlineMail, HiOutlinePhone, HiOutlineLocationMarker } from "react-icons/hi";
 
@@ -26,7 +27,14 @@ const Footer = () => {
 
                     <div className="space-y-6 text-center md:text-left">
                         <Link href="/" className="flex items-center justify-center md:justify-start gap-2">
-                            <img src="/logo.png" alt="Logo" className="w-10 h-10 object-contain bg-white rounded-lg" />
+
+                            <Image
+                                src="/logo.png"
+                                alt="Logo"
+                                width={40}
+                                height={40}
+                                className="object-contain bg-white rounded-lg"
+                            />
                             <span className="text-2xl font-bold text-white">QurbaniHat</span>
                         </Link>
                         <p className="text-gray-300 text-sm leading-relaxed max-w-xs mx-auto md:mx-0">

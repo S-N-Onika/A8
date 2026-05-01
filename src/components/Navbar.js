@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { FiMenu, FiX, FiSearch } from "react-icons/fi";
@@ -28,7 +29,13 @@ const Navbar = () => {
 
                     <div className="flex-shrink-0">
                         <Link href="/" className="flex items-center">
-                            <img src="/logo.png" alt="Logo" className="w-15 h-15 object-contain" />
+                            <Image
+                                src="/logo.png"
+                                alt="Logo"
+                                width={40}
+                                height={40}
+                                className="object-contain"
+                            />
                             <span className="text-3xl font-bold text-green-900">QurbaniHat</span>
                         </Link>
                     </div>

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { HiOutlineLocationMarker } from "react-icons/hi";
+import Image from "next/image";
 
 const FeaturedAnimals = ({ animals }) => {
     if (!animals) {
@@ -32,18 +33,22 @@ const FeaturedAnimals = ({ animals }) => {
                     {featured.map((animal) => (
                         <div
                             key={animal.id}
-                            className="bg-white rounded-2xl border border-green-200 overflow-hidden hover:shadow-2xl transition-all duration-300 group w-full"
+                            className="bg-white rounded-2xl border border-green-200 overflow-hidden hover:shadow-2xl transition-all duration-300 group w-full flex flex-col"
                         >
-                            <div className="h-55 overflow-hidden bg-gray-100">
-                                <img
+                            {/* Image Container with fixed Aspect Ratio */}
+                            <div className="relative aspect-[4/3] w-full overflow-hidden bg-gray-100">
+                                <Image
                                     src={animal.image}
                                     alt={animal.name}
-                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                    fill
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                    priority={animal.id <= 4}
                                 />
                             </div>
 
-                            <div className="p-6 space-y-2">
-                                <h3 className="text-xl font-bold text-gray-900 leading-tight h-7 overflow-hidden">
+                            <div className="p-6 space-y-2 flex-grow">
+                                <h3 className="text-xl font-bold text-gray-900 leading-tight truncate">
                                     {animal.name}
                                 </h3>
 
