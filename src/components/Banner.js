@@ -62,11 +62,11 @@ const Banner = () => {
             <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[500px] md:h-[650px] flex items-center pointer-events-none">
                 <div className="max-w-2xl text-center md:text-left space-y-6 pointer-events-auto">
                     <h1 className="text-4xl md:text-7xl font-extrabold text-orange-900 leading-tight">
-                        Find Perfect Animals<br />For
+                        Find Perfect Sacrifices<br />For
                         <span className="text-green-900"> Qurbani</span>
                     </h1>
                     <p className="text-gray-700 text-lg md:text-xl font-medium">
-                        Explore the finest collection of healthy livestock from top local farms.
+                        Explore the finest collection of healthy livestock from top<br/>local farms.
                         Book your choice today with trust and ease.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start pt-2">

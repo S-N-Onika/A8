@@ -16,14 +16,14 @@ const FeaturedAnimals = ({ animals }) => {
     const featured = animals.slice(0, 4);
 
     return (
-        <section className="py-20 bg-white">
+        <section className="py-20 bg-orange-50">
             <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-10">
 
                 <div className="flex justify-between items-center mb-12 px-2">
-                    <h2 className="text-2xl md:text-4xl font-bold text-green-900">Featured Animals</h2>
+                    <h2 className="text-2xl md:text-4xl font-extrabold text-green-900">Featured Animals</h2>
                     <Link
                         href="/animals"
-                        className="px-6 py-2 bg-green-900 text-white border border-gray-200 rounded-lg text-sm font-medium hover:bg-orange-900 transition"
+                        className="px-6 py-2 bg-green-900 text-white border border-gray-200 rounded-full text-md font-medium hover:bg-orange-900 transition"
                     >
                         View All
                     </Link>
@@ -35,7 +35,6 @@ const FeaturedAnimals = ({ animals }) => {
                             key={animal.id}
                             className="bg-white rounded-2xl border border-green-200 overflow-hidden hover:shadow-2xl transition-all duration-300 group w-full flex flex-col"
                         >
-                            {/* Image Container with fixed Aspect Ratio */}
                             <div className="relative aspect-[4/3] w-full overflow-hidden bg-gray-100">
                                 <Image
                                     src={animal.image}
