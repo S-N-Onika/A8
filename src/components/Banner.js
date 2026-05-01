@@ -54,7 +54,7 @@ const Banner = () => {
             <div className="absolute inset-0 z-0">
                 <Slider {...settings} className="h-full">
                     {images.map((img, index) => (
-                        <div key={index} className="relative h-[500px] md:h-[700px]">
+                        <div key={index} className="relative h-[500px] md:h-[800px]">
                             <img
                                 src={img}
                                 alt={`Slide ${index}`}

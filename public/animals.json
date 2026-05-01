@@ -87,7 +87,7 @@
         "age": 3,
         "location": "Dhaka",
         "description": "Top-tier Sahiwal breed. Massive weight and calm nature.",
-        "image": "https://ibb.co",
+        "image": "/sahiwal.jpeg",
         "category": "Large Animal"
     },
     {
@@ -126,7 +126,7 @@
         "age": 2,
         "location": "Rangpur",
         "description": "Beetal breed known for height and strength. Very well-behaved.",
-        "image": "https://ibb.co",
+        "image": "/Beetal.jpg",
         "category": "Small Animal"
     },
     {
@@ -139,7 +139,7 @@
         "age": 3,
         "location": "Mymensingh",
         "description": "Authentic Gir breed. Curved horns and speckled skin. Very attractive.",
-        "image": "https://ibb.co",
+        "image": "/girBull.jpeg",
         "category": "Large Animal"
     },
     {
