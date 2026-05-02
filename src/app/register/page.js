@@ -11,6 +11,7 @@ import "animate.css";
 export default function RegisterPage() {
     const router = useRouter();
     const [showPassword, setShowPassword] = useState(false);
+    const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
 
     const handleRegister = async (e) => {
@@ -18,10 +19,17 @@ export default function RegisterPage() {
         setError("");
 
         const form = e.target;
-        const name = form.name.value;
-        const email = form.email.value;
-        const photo = form.photo.value;
+        const name = form.name.value.trim();
+        const email = form.email.value.trim();
+        const photo = form.photo.value.trim();
         const password = form.password.value;
+
+        if (!name || !email || !photo || !password) {
+            const msg = "All fields are required";
+            setError(msg);
+            toast.error(msg);
+            return;
+        }
 
         if (password.length < 6) {
             const msg = "Password must be at least 6 characters";
@@ -30,91 +38,129 @@ export default function RegisterPage() {
             return;
         }
 
+        setLoading(true);
+
         try {
+            await new Promise((res) => setTimeout(res, 800));
+
             toast.success("Account Created Successfully!");
             form.reset();
             router.push("/login");
         } catch (err) {
-            setError(err.message);
-            toast.error(err.message);
+            const msg = err?.message || "Registration failed";
+            setError(msg);
+            toast.error(msg);
+        } finally {
+            setLoading(false);
         }
     };
 
-    const handleGoogleLogin = () => {
-        toast.success("Signed in with Google!");
-        router.push("/");
+    const handleGoogleLogin = async () => {
+        try {
+            toast.success("Signed in with Google!");
+            router.push("/");
+        } catch {
+            toast.error("Google Sign-in failed");
+        }
     };
 
     return (
-        <main className="bg-[#FCF9F3] min-h-screen flex flex-col items-center justify-center">
+        <main className="bg-[#FCF9F3] min-h-screen flex items-center justify-center px-4">
             <Toaster position="top-center" />
 
             <div className="bg-white w-full max-w-lg p-8 md:p-12 rounded-[2.5rem] shadow-2xl border border-green-100 animate__animated animate__fadeIn">
 
                 <div className="text-center mb-10">
-                    <h2 className="text-4xl font-black text-green-900 tracking-tight">Create Account</h2>
-                    <p className="text-gray-500 font-medium mt-2">Join the QurbaniHat community today</p>
+                    <h2 className="text-4xl font-black text-green-900">
+                        Create Account
+                    </h2>
+                    <p className="text-gray-500 mt-2">
+                        Join the QurbaniHat community today
+                    </p>
                 </div>
 
-                <form onSubmit={handleRegister} className="space-y-2">
-                    <div>
-                        <label className="block text-xs font-bold text-gray-400 uppercase mb-2 ml-1">Full Name</label>
-                        <input name="name" type="text" required placeholder="Your Name" className="w-full px-5 py-4 bg-gray-50 rounded-2xl border border-transparent focus:bg-white focus:border-green-900 transition-all font-medium outline-none" />
-                    </div>
+                <form onSubmit={handleRegister} className="space-y-4">
 
-                    <div>
-                        <label className="block text-xs font-bold text-gray-400 uppercase mb-2 ml-1">Email Address</label>
-                        <input name="email" type="email" required placeholder="Your Email" className="w-full px-5 py-4 bg-gray-50 rounded-2xl border border-transparent focus:bg-white focus:border-green-900 transition-all font-medium outline-none" />
-                    </div>
+                    <input name="name" type="text" placeholder="Full Name"
+                        className="input" />
 
-                    <div>
-                        <label className="block text-xs font-bold text-gray-400 uppercase mb-2 ml-1">Photo URL</label>
-                        <input name="photo" type="text" required placeholder="Your Photo URL" className="w-full px-5 py-4 bg-gray-50 rounded-2xl border border-transparent focus:bg-white focus:border-green-900 transition-all font-medium outline-none" />
-                    </div>
+                    <input name="email" type="email" placeholder="Email"
+                        className="input" />
+
+                    <input name="photo" type="text" placeholder="Photo URL"
+                        className="input" />
 
                     <div className="relative">
-                        <label className="block text-xs font-bold text-gray-400 uppercase mb-2 ml-1">Password</label>
-                        <div className="relative">
-                            <input
-                                name="password"
-                                type={showPassword ? "text" : "password"}
-                                required
-                                placeholder="Your Password"
-                                className="w-full px-5 py-4 bg-gray-50 rounded-2xl border border-transparent focus:bg-white focus:border-green-900 transition-all font-medium outline-none"
-                            />
-                            <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-green-900">
-                                {showPassword ? <FiEyeOff size={20} /> : <FiEye size={20} />}
-                            </button>
-                        </div>
+                        <input
+                            name="password"
+                            type={showPassword ? "text" : "password"}
+                            placeholder="Password"
+                            className="input pr-12"
+                        />
+
+                        <button
+                            type="button"
+                            onClick={() => setShowPassword(!showPassword)}
+                            className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400"
+                        >
+                            {showPassword ? <FiEyeOff /> : <FiEye />}
+                        </button>
                     </div>
 
-                    {error && <p className="text-red-500 text-xs font-bold ml-1">{error}</p>}
+                    {error && (
+                        <p className="text-red-500 text-xs font-bold">
+                            {error}
+                        </p>
+                    )}
 
-                    <button type="submit" className="w-full py-4 bg-green-900 text-white rounded-2xl font-black text-lg shadow-xl hover:bg-orange-900 hover:-translate-y-1 transition-all active:scale-95">
-                        Register Now
+                    <button
+                        type="submit"
+                        disabled={loading}
+                        className="w-full py-4 bg-green-900 text-white rounded-2xl font-bold hover:bg-orange-900 transition disabled:opacity-50"
+                    >
+                        {loading ? "Creating..." : "Register Now"}
                     </button>
                 </form>
 
-                <div className="relative my-10">
-                    <div className="absolute inset-0 flex items-center"><span className="w-full border-t border-gray-100"></span></div>
-                    <div className="relative flex justify-center text-xs uppercase"><span className="bg-white px-4 text-gray-400 font-bold">Or register with</span></div>
+                <div className="my-8 flex items-center gap-2">
+                    <div className="flex-1 border-t" />
+                    <span className="text-xs text-gray-400">OR</span>
+                    <div className="flex-1 border-t" />
                 </div>
 
                 <button
                     onClick={handleGoogleLogin}
-                    className="w-full flex items-center justify-center gap-3 py-4 border-2 border-gray-100 rounded-2xl font-bold text-gray-700 hover:bg-gray-50 transition-all active:scale-95"
+                    className="w-full flex items-center justify-center gap-3 py-4 border rounded-2xl font-bold hover:bg-gray-50"
                 >
-                    <FcGoogle size={26} />
+                    <FcGoogle size={24} />
                     Sign up with Google
                 </button>
 
-                <p className="text-center mt-10 text-sm text-gray-500 font-medium">
+                <p className="text-center mt-8 text-sm text-gray-500">
                     Already have an account?{" "}
-                    <Link href="/login" className="text-green-900 font-bold hover:underline">
-                        Login here
+                    <Link href="/login" className="text-green-900 font-bold">
+                        Login
                     </Link>
                 </p>
+
             </div>
+
+            <style jsx>{`
+                .input {
+                    width: 100%;
+                    padding: 14px 20px;
+                    background: #f9fafb;
+                    border-radius: 14px;
+                    outline: none;
+                    font-weight: 500;
+                    border: 1px solid transparent;
+                    transition: 0.2s;
+                }
+                .input:focus {
+                    border-color: #14532d;
+                    background: white;
+                }
+            `}</style>
         </main>
     );
 }

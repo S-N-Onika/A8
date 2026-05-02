@@ -15,10 +15,16 @@ const TipsBreeds = () => {
     return (
         <section className="bg-[#062c16] py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                {/* Tips Section */}
                 <div className="border border-green-800 rounded-3xl p-8 flex flex-col md:flex-row items-center gap-8 bg-white/5 backdrop-blur-sm">
+
                     <div className="space-y-6 w-full text-center md:text-left">
-                        <h2 className="text-3xl font-bold text-white">Qurbani Tips</h2>
-                        <ul className="space-y-3 flex flex-col items-start max-w-fit mx-auto md:mx-0">
+                        <h2 className="text-3xl font-bold text-white">
+                            Qurbani Tips
+                        </h2>
+
+                        <ul className="space-y-3">
                             {[
                                 "Choose a healthy animal",
                                 "Check age and weight",
@@ -27,40 +33,50 @@ const TipsBreeds = () => {
                             ].map((tip, index) => (
                                 <li key={index} className="flex items-center gap-3 text-gray-200">
                                     <LuCircleCheck className="text-orange-500 flex-shrink-0" size={20} />
-                                    <span className="text-sm font-medium whitespace-nowrap">{tip}</span>
+                                    <span className="text-sm font-medium">{tip}</span>
                                 </li>
                             ))}
                         </ul>
                     </div>
-                    <div className="flex justify-center items-center w-full">
-                        <div className="w-44 h-44 md:w-52 md:h-52 rounded-full overflow-hidden border-2 border-orange-500 shadow-2xl flex-shrink-0">
+
+                    <div className="w-full flex justify-center">
+                        <div className="w-44 h-44 md:w-52 md:h-52 rounded-full overflow-hidden border-2 border-orange-500 shadow-2xl">
                             <Image
                                 src="/tips.webp"
-                                alt="Qurbani Guide"
-                                width={200}
-                                height={100}
+                                alt="Qurbani livestock care guide"
+                                width={500}
+                                height={500}
                                 className="object-cover w-full h-full"
                             />
                         </div>
                     </div>
                 </div>
 
+                {/* Breeds Section */}
                 <div className="border border-green-800 rounded-3xl p-8 space-y-8 flex flex-col items-center justify-center text-center bg-white/5 backdrop-blur-sm">
-                    <h2 className="text-3xl font-bold text-white">Top Breeds for Qurbani</h2>
+
+                    <h2 className="text-3xl font-bold text-white">
+                        Top Breeds for Qurbani
+                    </h2>
 
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 w-full place-items-center">
                         {breeds.map((breed, index) => (
-                            <div key={index} className="flex flex-col items-center justify-center space-y-3">
-                                <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden border-2 border-orange-500 p-0.5 shadow-lg flex items-center justify-center">
+                            <div key={index} className="flex flex-col items-center space-y-3">
+
+                                <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden border-2 border-orange-500 shadow-lg">
                                     <Image
                                         src={breed.image}
                                         alt={breed.name}
                                         width={200}
                                         height={200}
-                                        className="w-full h-full rounded-full object-cover object-right"
+                                        className="object-fill w-full h-full"
                                     />
                                 </div>
-                                <p className="text-white text-xs font-semibold uppercase tracking-wider">{breed.name}</p>
+
+                                <p className="text-white text-xs font-semibold uppercase tracking-wider">
+                                    {breed.name}
+                                </p>
+
                             </div>
                         ))}
                     </div>
@@ -73,6 +89,7 @@ const TipsBreeds = () => {
                             Explore All Breeds
                         </Link>
                     </div>
+
                 </div>
             </div>
         </section>

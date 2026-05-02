@@ -1,12 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useRouter } from "next/navigation";
 import { FcGoogle } from "react-icons/fc";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import toast, { Toaster } from "react-hot-toast";
-import { useContext } from "react";
 import { AuthContext } from "@/providers/AuthProvider";
 
 export default function LoginPage() {
@@ -14,7 +13,9 @@ export default function LoginPage() {
     const [error, setError] = useState("");
     const [showPassword, setShowPassword] = useState(false);
 
-    const { login } = useContext(AuthContext);
+    const auth = useContext(AuthContext);
+
+    const login = auth?.login;
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -41,14 +42,17 @@ export default function LoginPage() {
                 photoURL: ""
             };
 
-            login(fakeUser);
+            if (login) {
+                await login(fakeUser);
+            }
 
             toast.success("Login Successful!");
             router.push("/");
 
         } catch (err) {
-            setError(err.message);
-            toast.error(err.message || "Failed to login. Please try again.");
+            const msg = err?.message || "Failed to login. Please try again.";
+            setError(msg);
+            toast.error(msg);
         }
     };
 
@@ -56,86 +60,98 @@ export default function LoginPage() {
         try {
             toast.success("Signed in with Google!");
             router.push("/");
-        } catch (err) {
+        } catch {
             toast.error("Google Sign-In failed.");
         }
     };
 
     return (
         <main className="bg-[#FCF9F3] min-h-screen flex flex-col">
-            <Toaster position="top-center" reverseOrder={false} />
+            <Toaster position="top-center" />
 
             <div className="flex-grow flex items-center justify-center px-4 py-12">
                 <div className="bg-white w-full max-w-md p-8 md:p-10 rounded-3xl shadow-xl border border-green-100">
+
                     <div className="text-center mb-8">
                         <h2 className="text-3xl font-black text-green-900">Login</h2>
-                        <p className="text-gray-500 text-sm font-medium mt-2">Access your QurbaniHat account</p>
+                        <p className="text-gray-500 text-sm mt-2">
+                            Access your QurbaniHat account
+                        </p>
                     </div>
 
                     <form onSubmit={handleLogin} className="space-y-5">
+
                         <div>
-                            <label className="block text-xs font-bold text-gray-400 uppercase mb-2 ml-1">Email</label>
+                            <label className="text-xs font-bold text-gray-400 uppercase ml-1">
+                                Email
+                            </label>
                             <input
                                 name="email"
                                 type="email"
                                 required
+                                className="w-full px-5 py-3.5 bg-gray-50 rounded-xl border focus:bg-white focus:border-green-900 outline-none"
                                 placeholder="Enter your email"
-                                className="w-full px-5 py-3.5 bg-gray-50 rounded-xl border border-transparent focus:bg-white focus:border-green-900 transition-all font-medium text-sm outline-none"
                             />
                         </div>
 
                         <div className="relative">
-                            <label className="block text-xs font-bold text-gray-400 uppercase mb-2 ml-1">Password</label>
-                            <div className="relative">
-                                <input
-                                    name="password"
-                                    type={showPassword ? "text" : "password"}
-                                    required
-                                    placeholder="Enter your password"
-                                    className="w-full px-5 py-3.5 bg-gray-50 rounded-xl border border-transparent focus:bg-white focus:border-green-900 transition-all font-medium text-sm outline-none"
-                                />
-                                <button
-                                    type="button"
-                                    onClick={() => setShowPassword(!showPassword)}
-                                    className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-green-900 transition-colors"
-                                >
-                                    {showPassword ? <FiEyeOff size={20} /> : <FiEye size={20} />}
-                                </button>
-                            </div>
+                            <label className="text-xs font-bold text-gray-400 uppercase ml-1">
+                                Password
+                            </label>
+
+                            <input
+                                name="password"
+                                type={showPassword ? "text" : "password"}
+                                required
+                                className="w-full px-5 py-3.5 bg-gray-50 rounded-xl border focus:bg-white focus:border-green-900 outline-none"
+                                placeholder="Enter your password"
+                            />
+
+                            <button
+                                type="button"
+                                onClick={() => setShowPassword(!showPassword)}
+                                className="absolute right-4 top-9 text-gray-400 hover:text-green-900"
+                            >
+                                {showPassword ? <FiEyeOff size={20} /> : <FiEye size={20} />}
+                            </button>
                         </div>
 
                         {error && (
-                            <p className="text-red-500 text-xs font-bold ml-1">{error}</p>
+                            <p className="text-red-500 text-xs font-bold">
+                                {error}
+                            </p>
                         )}
 
                         <button
                             type="submit"
-                            className="w-full py-4 bg-green-900 text-white rounded-2xl font-black text-lg shadow-lg hover:bg-orange-900 hover:-translate-y-1 transition-all active:scale-95"
+                            className="w-full py-4 bg-green-900 text-white rounded-2xl font-bold hover:bg-orange-900 transition"
                         >
                             Login
                         </button>
                     </form>
 
-                    <div className="relative my-8">
-                        <div className="absolute inset-0 flex items-center"><span className="w-full border-t border-gray-100"></span></div>
-                        <div className="relative flex justify-center text-xs uppercase"><span className="bg-white px-2 text-gray-400 font-bold">Or</span></div>
+                    <div className="my-8 flex items-center">
+                        <div className="flex-1 border-t" />
+                        <span className="px-2 text-xs text-gray-400">OR</span>
+                        <div className="flex-1 border-t" />
                     </div>
 
                     <button
                         type="button"
                         onClick={handleGoogleLogin}
-                        className="w-full flex items-center justify-center gap-3 py-3.5 border-2 border-gray-100 rounded-2xl font-bold text-gray-700 hover:bg-gray-50 transition-all active:scale-95"
+                        className="w-full flex items-center justify-center gap-3 py-3.5 border rounded-2xl font-bold hover:bg-gray-50"
                     >
                         <FcGoogle size={24} />
                         Continue with Google
                     </button>
 
-                    <p className="text-center mt-8 text-sm text-gray-500 font-medium">
+                    <p className="text-center mt-8 text-sm text-gray-500">
                         Don't have an account?{" "}
-                        <Link href="/register" className="text-green-900 font-bold hover:underline">
-                            Register Now
+                        <Link href="/register" className="text-green-900 font-bold">
+                            Register
                         </Link>
                     </p>
+
                 </div>
             </div>
         </main>

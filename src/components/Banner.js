@@ -19,7 +19,7 @@ const Banner = () => {
         slidesToShow: 1,
         slidesToScroll: 1,
         autoplay: true,
-        autoplaySpeed: 2000,
+        autoplaySpeed: 3000,
         pauseOnHover: false,
         fade: true,
         cssEase: "cubic-bezier(0.7, 0, 0.3, 1)",
@@ -31,13 +31,13 @@ const Banner = () => {
     return (
         <section className="relative w-full h-[500px] sm:h-[550px] md:h-[650px] lg:h-[750px] overflow-hidden bg-gray-100">
             <div
-                className="absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 z-30 cursor-pointer bg-white/10 hover:bg-green-900 text-green-900 hover:text-white p-2 md:p-3 rounded-full shadow-lg transition-all hidden md:block"
+                className="absolute left-2 lg:left-8 top-1/2 -translate-y-1/2 z-30 cursor-pointer bg-white/10 hover:bg-green-900 text-green-900 hover:text-white p-2 md:p-3 rounded-full shadow-lg transition-all hidden md:block"
                 onClick={() => sliderRef.current.slickPrev()}
             >
                 <LuChevronLeft size={24} />
             </div>
             <div
-                className="absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 z-30 cursor-pointer bg-white/10 hover:bg-green-900 text-green-900 hover:text-white p-2 md:p-3 rounded-full shadow-lg transition-all hidden md:block"
+                className="absolute right-2 lg:right-8 top-1/2 -translate-y-1/2 z-30 cursor-pointer bg-white/10 hover:bg-green-900 text-green-900 hover:text-white p-2 md:p-3 rounded-full shadow-lg transition-all hidden md:block"
                 onClick={() => sliderRef.current.slickNext()}
             >
                 <LuChevronRight size={24} />
@@ -52,22 +52,24 @@ const Banner = () => {
                                 alt={`Slide ${index}`}
                                 fill
                                 priority={index === 0}
+                                sizes="100vw"
                                 className="object-cover object-center opacity-60"
                             />
+                            <div className="absolute inset-0 bg-black/40 z-10" />
                         </div>
                     ))}
                 </Slider>
             </div>
 
-            <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center pointer-events-none">
-                <div className="max-w-2xl w-full text-center md:text-left space-y-4 md:space-y-6 pointer-events-auto">
-                    <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-orange-900 leading-tight">
-                        Find Perfect Sacrifices<br className="hidden sm:block" /> For
+            <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
+                <div className="max-w-2xl w-full text-center md:text-left space-y-4 md:space-y-6">
+                    <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white drop-shadow-lg leading-tight">
+                        Book Verified Livestock<br className="hidden sm:block" /> For
                         <span className="text-green-900"> Qurbani</span>
                     </h1>
 
-                    <p className="text-gray-700 text-sm sm:text-base md:text-lg lg:text-xl font-medium max-w-md mx-auto md:mx-0">
-                        Explore the finest collection of healthy livestock from top local farms.Book your choice today with trust and ease.
+                    <p className="text-gray-200 text-sm sm:text-base md:text-lg lg:text-xl font-medium max-w-md mx-auto md:mx-0">
+                        Explore the finest collection of healthy livestock from top local farms. Book your choice today with trust and ease.
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start pt-2 md:pt-4">

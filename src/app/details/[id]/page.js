@@ -49,7 +49,7 @@ const AnimalDetails = () => {
 
             {isImageOpen && (
                 <div
-                    className="fixed inset-0 z-[100] bg-black/90 flex items-center justify-center p-4 cursor-zoom-out"
+                    className="fixed inset-0 z-100 bg-black/90 flex items-center justify-center p-4 cursor-zoom-out"
                     onClick={() => setIsImageOpen(false)}
                 >
                     <button className="absolute top-10 right-10 text-white hover:text-orange-500 transition-colors">
@@ -83,7 +83,7 @@ const AnimalDetails = () => {
 
                     <div className="space-y-8">
                         <div
-                            className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border-8 border-white cursor-zoom-in group"
+                            className="relative aspect-4/3 rounded-3xl overflow-hidden shadow-2xl border-8 border-white cursor-zoom-in group"
                             onClick={() => setIsImageOpen(true)}
                         >
                             <Image src={animal.image} alt={animal.name} fill className="object-cover group-hover:scale-105 transition-transform duration-500" priority />
