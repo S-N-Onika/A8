@@ -4,6 +4,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { useContext } from "react";
+import { AuthContext } from "@/providers/AuthProvider";
 import { FiMenu, FiX, FiSearch, FiLogOut, FiUser } from "react-icons/fi";
 import { FaUserCircle } from "react-icons/fa";
 
@@ -12,7 +14,7 @@ const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [showDropdown, setShowDropdown] = useState(false);
 
-    const user = null;
+    const { user, logout } = useContext(AuthContext);
 
     const navLinks = [
         { name: "Home", href: "/" },
@@ -79,6 +81,7 @@ const Navbar = () => {
                                                 <FiUser /> Profile
                                             </Link>
                                             <button
+                                                onClick={logout}
                                                 className="w-full flex items-center gap-3 px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors font-bold"
                                             >
                                                 <FiLogOut /> Logout

@@ -6,6 +6,7 @@ import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { HiOutlineLocationMarker, HiOutlineScale, HiOutlineCalendar, HiX } from "react-icons/hi";
+import PrivateRoute from "@/components/PrivateRoute";
 
 const AnimalDetails = () => {
     const { id } = useParams();
@@ -42,6 +43,7 @@ const AnimalDetails = () => {
     if (!animal) return <div className="min-h-screen flex items-center justify-center text-red-600 font-bold uppercase tracking-widest text-xl">Animal Not Found</div>;
 
     return (
+        <PrivateRoute>
         <main className="bg-[#FCF9F3] min-h-screen relative">
             <Navbar />
 
@@ -160,6 +162,7 @@ const AnimalDetails = () => {
             </div>
             <Footer />
         </main>
+        </PrivateRoute>
     );
 };
 

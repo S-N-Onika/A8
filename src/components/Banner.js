@@ -66,9 +66,8 @@ const Banner = () => {
                         <span className="text-green-900"> Qurbani</span>
                     </h1>
 
-                    <p className="text-gray-700 text-sm sm:text-base md:text-lg lg:text-xl font-medium max-w-md mx-auto md:mx-0 leading-relaxed">
-                        Explore the finest collection of healthy livestock from top<br className="hidden lg:block" /> local farms.
-                        Book your choice today with trust and ease.
+                    <p className="text-gray-700 text-sm sm:text-base md:text-lg lg:text-xl font-medium max-w-md mx-auto md:mx-0">
+                        Explore the finest collection of healthy livestock from top local farms.Book your choice today with trust and ease.
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start pt-2 md:pt-4">

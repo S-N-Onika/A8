@@ -6,11 +6,15 @@ import { useRouter } from "next/navigation";
 import { FcGoogle } from "react-icons/fc";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import toast, { Toaster } from "react-hot-toast";
+import { useContext } from "react";
+import { AuthContext } from "@/providers/AuthProvider";
 
 export default function LoginPage() {
     const router = useRouter();
     const [error, setError] = useState("");
     const [showPassword, setShowPassword] = useState(false);
+
+    const { login } = useContext(AuthContext);
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -20,9 +24,18 @@ export default function LoginPage() {
 
         try {
             if (email && password) {
+                const fakeUser = {
+                    name: "User",
+                    email,
+                    photoURL: ""
+                };
+
+                login(fakeUser);
+
                 toast.success("Login Successful!");
                 router.push("/");
-            } else {
+            }
+             else {
                 throw new Error("Invalid credentials");
             }
         } catch (err) {
