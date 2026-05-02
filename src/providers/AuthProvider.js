@@ -10,14 +10,22 @@ const AuthProvider = ({ children }) => {
 
 
     useEffect(() => {
-        const storedUser = localStorage.getItem("user");
-        if (storedUser) {
-            setUser(JSON.parse(storedUser));
+        if (typeof window !== "undefined") {
+            const storedUser = localStorage.getItem("user");
+            if (storedUser) {
+                setUser(JSON.parse(storedUser));
+            }
         }
         setLoading(false);
     }, []);
-    if (loading) return null;
-
+    
+    if (loading) {
+        return (
+            <div className="h-screen flex items-center justify-center">
+                <p className="text-green-900 font-bold">Loading...</p>
+            </div>
+        );
+    }
     const login = (userData) => {
         setUser(userData);
         localStorage.setItem("user", JSON.stringify(userData));

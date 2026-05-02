@@ -3,10 +3,9 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
-import { useContext } from "react";
+import { useState, useContext } from "react";
 import { AuthContext } from "@/providers/AuthProvider";
-import { FiMenu, FiX, FiSearch, FiLogOut, FiUser } from "react-icons/fi";
+import { FiMenu, FiX, FiLogOut, FiUser } from "react-icons/fi";
 import { FaUserCircle } from "react-icons/fa";
 
 const Navbar = () => {
@@ -15,6 +14,12 @@ const Navbar = () => {
     const [showDropdown, setShowDropdown] = useState(false);
 
     const { user, logout } = useContext(AuthContext);
+
+    const handleLogout = () => {
+        setShowDropdown(false);
+        setIsOpen(false);
+        logout();
+    };
 
     const navLinks = [
         { name: "Home", href: "/" },
@@ -33,8 +38,8 @@ const Navbar = () => {
 
                     <div className="flex-shrink-0">
                         <Link href="/" className="flex items-center gap-1">
-                            <Image src="/logo.png" alt="Logo" width={50} height={50} className="object-contain" />
-                            <span className="text-3xl font-bold text-green-900 tracking-tight">QurbaniHat</span>
+                            <Image src="/logo.png" alt="Logo" width={60} height={60} className="object-contain" />
+                            <span className="text-3xl font-bold text-green-900">QurbaniHat</span>
                         </Link>
                     </div>
 
@@ -49,45 +54,50 @@ const Navbar = () => {
                     </div>
 
                     <div className="flex items-center gap-4">
-                        <button className="hidden sm:block text-gray-400 hover:text-green-900 transition-colors">
-                            <FiSearch size={20} />
-                        </button>
-
-                        <div className="h-6 w-[1px] bg-gray-200 mx-2 hidden sm:block"></div>
 
                         <div className="hidden md:flex items-center relative">
                             {user ? (
-                                <div className="relative">
-                                    <button
-                                        onClick={() => setShowDropdown(!showDropdown)}
-                                        className="focus:outline-none flex items-center transition-transform active:scale-95"
-                                    >
-                                        {user.photoURL ? (
-                                            <div className="w-10 h-10 rounded-full border-2 border-green-900 overflow-hidden">
-                                                <img src={user.photoURL} alt="User" className="w-full h-full object-cover" />
-                                            </div>
-                                        ) : (
-                                            <FaUserCircle size={38} className="text-green-900 hover:text-green-700" />
-                                        )}
-                                    </button>
+                                <div className="flex items-center gap-4">
+                                    <div className="relative">
+                                        <button
+                                            onClick={() => setShowDropdown(!showDropdown)}
+                                            className="focus:outline-none flex items-center transition-transform active:scale-95"
+                                        >
+                                            {user.photoURL ? (
+                                                <div className="w-10 h-10 rounded-full border-2 border-green-900 overflow-hidden">
+                                                    <Image
+                                                        src={user.photoURL}
+                                                        alt="User"
+                                                        width={40}
+                                                        height={40}
+                                                        className="w-full h-full object-cover"
+                                                    />
+                                                </div>
+                                            ) : (
+                                                <FaUserCircle size={38} className="text-green-900 hover:text-green-700" />
+                                            )}
+                                        </button>
 
-                                    {showDropdown && (
-                                        <div className="absolute right-0 mt-3 w-44 bg-white rounded-xl shadow-2xl border border-gray-100 py-2 animate-in fade-in zoom-in duration-200 origin-top-right">
-                                            <Link
-                                                href="/my-profile"
-                                                onClick={() => setShowDropdown(false)}
-                                                className="flex items-center gap-3 px-4 py-2 text-sm text-gray-600 hover:bg-green-50 transition-colors"
-                                            >
-                                                <FiUser /> Profile
-                                            </Link>
-                                            <button
-                                                onClick={logout}
-                                                className="w-full flex items-center gap-3 px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors font-bold"
-                                            >
-                                                <FiLogOut /> Logout
-                                            </button>
-                                        </div>
-                                    )}
+                                        {showDropdown && (
+                                            <div className="absolute right-0 mt-3 w-44 bg-white rounded-xl shadow-2xl border border-gray-100 py-2 animate-in fade-in zoom-in duration-200 origin-top-right">
+                                                <Link
+                                                    href="/my-profile"
+                                                    onClick={() => setShowDropdown(false)}
+                                                    className="flex items-center gap-3 px-4 py-2 text-sm text-gray-600 hover:bg-green-50 transition-colors"
+                                                >
+                                                    <FiUser /> Profile
+                                                </Link>
+                                            </div>
+                                        )}
+                                    </div>
+
+                                    {/* Desktop Only Logout Button */}
+                                    <button
+                                        onClick={handleLogout}
+                                        className="bg-green-900 text-white px-5 py-2 rounded-lg text-sm font-bold shadow-md hover:bg-green-800 transition-all flex items-center gap-2"
+                                    >
+                                        <FiLogOut /> Logout
+                                    </button>
                                 </div>
                             ) : (
                                 <div className="flex items-center gap-3">
@@ -111,7 +121,12 @@ const Navbar = () => {
             {isOpen && (
                 <div className="md:hidden bg-white border-t border-gray-100 p-6 space-y-4 shadow-xl">
                     {navLinks.map((link) => (
-                        <Link key={link.href} href={link.href} onClick={() => setIsOpen(false)} className={`block text-lg ${activeLink(link.href)}`}>
+                        <Link
+                            key={link.href}
+                            href={link.href}
+                            onClick={() => setIsOpen(false)}
+                            className={`block text-lg ${activeLink(link.href)}`}
+                        >
                             {link.name}
                         </Link>
                     ))}
@@ -121,8 +136,11 @@ const Navbar = () => {
                                 <Link href="/my-profile" onClick={() => setIsOpen(false)} className="flex items-center justify-center gap-2 font-bold text-gray-700 py-2">
                                     <FaUserCircle size={24} /> My Profile
                                 </Link>
-                                <button className="flex items-center justify-center gap-2 bg-red-50 text-red-600 py-3 rounded-xl font-bold">
-                                    <FiLogOut /> Logout Account
+                                <button
+                                    onClick={handleLogout}
+                                    className="bg-green-900 text-white px-5 py-2 rounded-lg text-sm font-bold shadow-md hover:bg-green-800 transition-all flex items-center gap-2 justify-center"
+                                >
+                                    <FiLogOut /> Logout
                                 </button>
                             </>
                         ) : (

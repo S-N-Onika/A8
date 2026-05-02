@@ -37,6 +37,7 @@ const Footer = () => {
                             />
                             <span className="text-2xl font-bold text-white">QurbaniHat</span>
                         </Link>
+                        <h4 className="text-white font-bold mb-4">About Us</h4>
                         <p className="text-gray-300 text-sm leading-relaxed max-w-xs mx-auto md:mx-0">
                             The most trusted marketplace for healthy and verified Qurbani livestock. Connecting local farms with families across Bangladesh.
                         </p>

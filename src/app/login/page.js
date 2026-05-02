@@ -19,25 +19,33 @@ export default function LoginPage() {
     const handleLogin = async (e) => {
         e.preventDefault();
         setError("");
+
         const email = e.target.email.value;
         const password = e.target.password.value;
 
         try {
-            if (email && password) {
-                const fakeUser = {
-                    name: "User",
-                    email,
-                    photoURL: ""
-                };
-
-                login(fakeUser);
-
-                toast.success("Login Successful!");
-                router.push("/");
-            }
-             else {
+            if (!email || !password) {
                 throw new Error("Invalid credentials");
             }
+
+            if (password.length < 6) {
+                const msg = "Password must be at least 6 characters";
+                setError(msg);
+                toast.error(msg);
+                return;
+            }
+
+            const fakeUser = {
+                name: "User",
+                email,
+                photoURL: ""
+            };
+
+            login(fakeUser);
+
+            toast.success("Login Successful!");
+            router.push("/");
+
         } catch (err) {
             setError(err.message);
             toast.error(err.message || "Failed to login. Please try again.");
