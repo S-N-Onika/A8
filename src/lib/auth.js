@@ -34,6 +34,6 @@ export const auth = betterAuth({
 
     trustedOrigins: [
         "http://localhost:3000",
-        "https://qurbani-hat000.netlify.app/"
+        "https://a8-liard.vercel.app"
     ],
 });
