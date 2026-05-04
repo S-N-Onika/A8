@@ -6,7 +6,7 @@ QurbaniHat is a modern, responsive livestock marketplace designed for the Qurban
 
 ## 🚀 Live Demo
 
-**[Click here to visit the live site](https://vercel.app)**
+**[Click here to visit the live site](https://a8-liard.vercel.app)**
 
 ---
 
